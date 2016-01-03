@@ -9,8 +9,10 @@ echo ${SOFT_DIR}
 cd ${WORKSPACE}/${NAME}-${VERSION}
 sed -i 's@^INSTALL_TOP.*$@INSTALL_TOP= ${SOFT_DIR}@g' Makefile
 echo "All tests have passed, will now build into ${SOFT_DIR}"
-export SYSLDFLAGS=" -L${READLINE_DIR}/lib -Wl,-export-dynamic"
-export SYSCFLAGS="-I${READLINE_DIR}/include"
+echo "Setting SYSLDFLAGS"
+sed -i 's@^SYSLDFLAGS=.*$@SYSLDFLAGS="-L${READLINE_DIR}/lib -Wl,-export-dynamic"@g' src/Makefile
+echo "Setting SYSCFLAGS"
+sed -i 's@SYSCFLAGS=.*$@SYSCFLAGS="-I${READLINE_DIR}/include -L${READLINE_DIR}/lib"@g' src/Makefile
 make linux install
 echo "Creating the modules file directory ${LIBRARIES_MODULES}"
 mkdir -p ${LIBRARIES_MODULES}/${NAME}

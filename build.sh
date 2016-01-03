@@ -32,8 +32,11 @@ tar xzf  ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE} --skip-old-files
 mkdir -p ${WORKSPACE}/${NAME}-${VERSION}
 cd ${WORKSPACE}/${NAME}-${VERSION}
 # Set the install dir
+echo "Setting install dir"
 sed -i 's@^INSTALL_TOP.*$@INSTALL_TOP= ${SOFT_DIR}@g' Makefile
 echo "Readline is at ${READLINE_DIR}"
-export SYSLDFLAGS="-L${READLINE_DIR}/lib -Wl,-export-dynamic"
-export SYSCFLAGS="-I${READLINE_DIR}/include"
+echo "Setting SYSLDFLAGS"
+sed -i 's@^SYSLDFLAGS=.*$@SYSLDFLAGS="-L${READLINE_DIR}/lib -Wl,-export-dynamic"@g' src/Makefile
+echo "Setting SYSCFLAGS"
+sed -i 's@SYSCFLAGS=.*$@SYSCFLAGS="-I${READLINE_DIR}/include -L${READLINE_DIR}/lib"@g' src/Makefile
 make linux

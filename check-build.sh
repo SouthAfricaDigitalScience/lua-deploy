@@ -5,8 +5,6 @@ module load ci
 module add readline
 cd ${WORKSPACE}/${NAME}-${VERSION}
 echo $?
-export LDFLAGS="-L${READLINE_DIR}/lib -Wl,-export-dynamic"
-export CFLAGS="-I${READLINE_DIR}/include"
 make test
 make install
 mkdir -p ${REPO_DIR}
