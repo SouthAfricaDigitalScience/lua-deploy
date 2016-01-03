@@ -34,4 +34,4 @@ cd ${WORKSPACE}/${NAME}-${VERSION}
 # Set the install dir
 sed -i 's@^INSTALL_TOP.*$@INSTALL_TOP= ${SOFT_DIR}@g' Makefile
 echo "Readline is at ${READLINE_DIR}"
-CFLAGS=-I${READLINE_DIR}/include -L${READLINE_DIR}/lib make -j 2 linux
+CFLAGS="-I${READLINE_DIR}/include -L${READLINE_DIR}/lib" make -j 2 linux
