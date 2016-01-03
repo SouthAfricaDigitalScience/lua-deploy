@@ -4,9 +4,11 @@
 module load ci
 module add readline
 cd ${WORKSPACE}/${NAME}-${VERSION}
-make test
 echo $?
-LDFLAGS="-Wl,-export-dynamic  -L${READLINE_DIR}/lib" CFLAGS="-I${READLINE_DIR}/include" make install # DESTDIR=$SOFT_DIR
+export LDFLAGS="-L${READLINE_DIR}/lib -Wl,-export-dynamic"
+export CFLAGS="-I${READLINE_DIR}/include"
+make test
+make install
 mkdir -p ${REPO_DIR}
 # it's kinda wierd to make a module for lua, when lua is going to be used to replace modules wit lmod, but hey.
 mkdir -p modules

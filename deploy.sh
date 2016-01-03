@@ -4,12 +4,14 @@
 . /etc/profile.d/modules.sh
 echo ${SOFT_DIR}
 module add deploy
-module add  readline
+module add readline
 echo ${SOFT_DIR}
 cd ${WORKSPACE}/${NAME}-${VERSION}
 sed -i 's@^INSTALL_TOP.*$@INSTALL_TOP= ${SOFT_DIR}@g' Makefile
 echo "All tests have passed, will now build into ${SOFT_DIR}"
-LDFLAGS="-Wl,-export-dynamic  -L${READLINE_DIR}/lib" CFLAGS="-I${READLINE_DIR}/include"  make install
+export LDFLAGS=" -L${READLINE_DIR}/lib -Wl,-export-dynamic"
+export CFLAGS="-I${READLINE_DIR}/include"
+make install
 echo "Creating the modules file directory ${LIBRARIES_MODULES}"
 mkdir -p ${LIBRARIES_MODULES}/${NAME}
 (
