@@ -2,10 +2,11 @@
 # Check build for Lua
 . /etc/profile.d/modules.sh
 module load ci
+module add readline
 cd ${WORKSPACE}/${NAME}-${VERSION}
 make test
 echo $?
-make install # DESTDIR=$SOFT_DIR
+CFLAGS=-I${READLINE_DIR}/include -L${READLINE_DIR}/lib make install # DESTDIR=$SOFT_DIR
 mkdir -p ${REPO_DIR}
 # it's kinda wierd to make a module for lua, when lua is going to be used to replace modules wit lmod, but hey.
 mkdir -p modules

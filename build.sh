@@ -3,6 +3,7 @@
 
 . /etc/profile.d/modules.sh
 module add ci
+module add readline
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 
 mkdir -p $WORKSPACE
@@ -32,4 +33,5 @@ mkdir -p ${WORKSPACE}/${NAME}-${VERSION}
 cd ${WORKSPACE}/${NAME}-${VERSION}
 # Set the install dir
 sed -i 's@^INSTALL_TOP.*$@INSTALL_TOP= ${SOFT_DIR}@g' Makefile
-make -j 2 linux
+echo "Readline is at ${READLINE_DIR}"
+CFLAGS=-I${READLINE_DIR}/include -L${READLINE_DIR}/lib make -j 2 linux
