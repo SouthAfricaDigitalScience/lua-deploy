@@ -38,5 +38,5 @@ echo "Readline is at ${READLINE_DIR}"
 echo "Setting SYSLDFLAGS"
 sed -i 's@^SYSLDFLAGS=.*$@SYSLDFLAGS=-L${READLINE_DIR}/lib -Wl,-export-dynamic@g' src/Makefile
 echo "Setting SYSCFLAGS"
-sed -i 's@SYSCFLAGS=.*$@SYSCFLAGS=-I${READLINE_DIR}/include -L${READLINE_DIR}/lib@g' src/Makefile
+sed -i 's@SYSCFLAGS=.*$@SYSCFLAGS="-I${READLINE_DIR}/include -L${READLINE_DIR}/lib@g" src/Makefile
 make linux
