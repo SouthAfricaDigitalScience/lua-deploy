@@ -21,10 +21,10 @@ proc ModulesHelp { } {
 }
 
 module-whatis   "$NAME $VERSION."
-setenv       LUA_VERSION       $VERSION
-setenv       LUA_DIR           /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+setenv       LUA_VERSION                 $VERSION
+setenv       LUA_DIR                            /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH   $::env(LUA_DIR)/lib
-prepend-path PATH              $::env(LUA_DIR)/bin
+prepend-path PATH                           $::env(LUA_DIR)/bin
 MODULE_FILE
 ) > modules/$VERSION
 

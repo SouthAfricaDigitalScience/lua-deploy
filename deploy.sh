@@ -27,10 +27,10 @@ proc ModulesHelp { } {
 }
 
 module-whatis   "$NAME $VERSION : See https://github.com/SouthAfricaDigitalScience/LUA-deploy"
-setenv LUA_VERSION       $VERSION
-setenv LUA_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
-prepend-path LD_LIBRARY_PATH   $LUA_DIR/lib
-prepend-path PATH        $::env(LUA_DIR)/bin
+setenv LUA_VERSION                        $VERSION
+setenv LUA_DIR                                   $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+prepend-path LD_LIBRARY_PATH    $::env(LUA_DIR)/lib
+prepend-path PATH                            $::env(LUA_DIR)/bin
 MODULE_FILE
 ) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
 module add $NAME/$VERSION
