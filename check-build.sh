@@ -2,6 +2,7 @@
 # Check build for Lua
 . /etc/profile.d/modules.sh
 module load ci
+module add ncurses
 module add readline
 cd ${WORKSPACE}/${NAME}-${VERSION}
 echo $?
