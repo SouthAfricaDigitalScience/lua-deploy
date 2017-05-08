@@ -15,8 +15,8 @@ sed -i 's@^SYSLDFLAGS=.*$@SYSLDFLAGS="-L${READLINE_DIR}/lib -L${NCURSES_DIR}/lib
 echo "Setting SYSCFLAGS"
 sed -i 's@SYSCFLAGS=.*$@SYSCFLAGS="-I${READLINE_DIR}/include -I${NCURSES_DIR}/include"@g' src/Makefile
 make linux install
-echo "Creating the modules file directory ${LIBRARIES_MODULES}"
-mkdir -p ${LIBRARIES_MODULES}/${NAME}
+echo "Creating the modules file directory ${LIBRARIES}"
+mkdir -p ${LIBRARIES}/${NAME}
 (
 cat <<MODULE_FILE
 #%Module1.0
@@ -33,6 +33,6 @@ setenv LUA_DIR                                   $::env(CVMFS_DIR)/$::env(SITE)/
 prepend-path LD_LIBRARY_PATH    $::env(LUA_DIR)/lib
 prepend-path PATH                            $::env(LUA_DIR)/bin
 MODULE_FILE
-) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
+) > ${LIBRARIES}/${NAME}/${VERSION}
 module add $NAME/$VERSION
 which lua
