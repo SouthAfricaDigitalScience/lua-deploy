@@ -1,14 +1,14 @@
 #!/bin/bash -e
 # Check build for Lua
 . /etc/profile.d/modules.sh
-module load ci
+module add ci
 module add ncurses
 module add readline
 cd ${WORKSPACE}/${NAME}-${VERSION}
 echo $?
 make test
 make install
-mkdir -p ${REPO_DIR}
+
 # it's kinda wierd to make a module for lua, when lua is going to be used to replace modules wit lmod, but hey.
 mkdir -p modules
 (
